@@ -100,9 +100,23 @@
             padding: 15px 25px; background: #fafafa; border-top: 1px solid #eee;
         }
 
+        /* Improved Professional Pay Button Style */
         .pay-btn {
-            display: block; background: var(--growth); color: white; padding: 10px;
-            border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center;
+            display: block; 
+            background: linear-gradient(135deg, #28a745, #1e7e34); 
+            color: white; 
+            padding: 12px;
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: bold; 
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .pay-btn:active {
+            transform: scale(0.98);
         }
 
         /* PRINT SPECIFIC HIDDEN ELEMENTS */
@@ -209,7 +223,10 @@
         <div class="qr-box" style="text-align: center; border: 1px solid #ddd; padding: 10px; border-radius: 8px;">
             <div style="font-size: 9px; font-weight: bold; margin-bottom: 5px;">SCAN TO PAY BALANCE</div>
             <img src="qr.jpeg" alt="QR" style="width: 80px; height: 80px; object-fit: contain;">
-            <a href="upi://pay?pa=9934291260@ptaxis&pn=Vishal%20Kumar%20Singh&am=98703.20" class="pay-btn">PAY BALANCE</a>
+            
+            <a href="upi://pay?pa=9934291260@ptaxis&pn=Vishal%20Kumar%20Singh&am=98703.20&cu=INR&tn=LIC%20Premium%20Payment" class="pay-btn">
+                PAY BALANCE NOW
+            </a>
         </div>
     </div>
 
