@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LIC_Wealth_Report_Vishal_Kumar_Singh</title>
+    <title>LIC_Professional_Bill_Vishal_Singh</title>
     <style>
         :root {
             --primary: #003366;
@@ -10,122 +10,104 @@
             --accent: #ffcc00;
             --growth: #28a745;
             --alert: #d32f2f;
+            --light: #f8fafc;
         }
         
-        /* A4 Page Setup */
-        @page {
-            size: A4;
-            margin: 10mm;
-        }
+        @page { size: A4; margin: 10mm; }
 
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
-            background-color: #f0f2f5; 
+            background-color: #eef2f7; 
             margin: 0; 
             padding: 20px;
-            -webkit-print-color-adjust: exact;
+            color: #333;
         }
         
         .bill-card {
-            max-width: 210mm; /* A4 Width */
+            max-width: 210mm;
             margin: auto;
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
         }
 
         .header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 25px 40px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .photo-container {
-            width: 100px; height: 125px; border: 3px solid white; border-radius: 4px;
-            overflow: hidden; flex-shrink: 0; background: white;
-        }
-        .photo-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        .payment-status {
-            background: #fff9c4;
-            padding: 15px 40px;
-            border-bottom: 2px solid var(--accent);
+            padding: 30px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .highlight-box {
-            background: var(--alert);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 5px;
+        .header-profile { display: flex; align-items: center; gap: 20px; }
+        .photo-container {
+            width: 80px; height: 100px; border: 2px solid white; border-radius: 4px;
+            background: #fff; overflow: hidden;
+        }
+        .photo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .bill-meta { text-align: right; font-size: 13px; opacity: 0.9; }
+
+        .payment-status-bar {
+            background: #fff9c4;
+            padding: 15px 40px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
             font-weight: bold;
-            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-
-        .content { padding: 25px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #f1f5f9; color: var(--primary); padding: 12px; text-align: left; font-size: 11px; text-transform: uppercase; }
-        td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 11px; color: #333; }
+        .content { padding: 30px 40px; }
         
-        td:first-child::before {
-            content: "• ";
-            color: var(--secondary);
-            font-weight: bold;
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background: var(--light); color: var(--primary); padding: 12px; text-align: left; font-size: 12px; text-transform: uppercase; border-bottom: 2px solid #ddd; }
+        td { padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 13px; }
+
+        .calculation-area {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            margin-left: auto;
+            width: 350px;
         }
 
-        .total-row { background: #f8f9fa; font-weight: bold; }
-        .balance-row { background: #fffde7; font-size: 16px; color: var(--alert); font-weight: bold; border-top: 2px solid var(--accent); }
+        .calc-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
+        .calc-row.total { font-weight: bold; color: var(--primary); border-top: 1px solid #ccc; margin-top: 10px; padding-top: 10px; }
+        .calc-row.final { font-size: 18px; color: var(--alert); border-top: 2px double #ccc; margin-top: 5px; padding-top: 10px; }
 
-        .motivation-grid {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; padding: 0 25px 25px;
+        .footer-action {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 40px;
+            padding: 30px 40px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+            align-items: center;
         }
 
-        .m-card { padding: 12px; border-radius: 10px; font-size: 10px; line-height: 1.4; border: 1px solid #e0e0e0; }
-        .m-card h4 { margin: 0 0 5px 0; color: var(--primary); font-size: 11px; }
-
-        .footer-grid {
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;
-            padding: 15px 25px; background: #fafafa; border-top: 1px solid #eee;
-        }
-
-        /* Improved Professional Pay Button Style */
         .pay-btn {
-            display: block; 
-            background: linear-gradient(135deg, #28a745, #1e7e34); 
-            color: white; 
-            padding: 12px;
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 14px; 
-            font-weight: bold; 
+            display: block;
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+            transition: 0.3s;
         }
 
-        .pay-btn:active {
-            transform: scale(0.98);
-        }
+        .pay-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3); }
 
-        /* PRINT SPECIFIC HIDDEN ELEMENTS */
         @media print {
             body { background: white; padding: 0; }
-            .bill-card { box-shadow: none; border: 1px solid #eee; border-radius: 0; }
-            .pay-btn, .qr-box { display: none !important; }
-            .motivation-grid { gap: 10px; }
-            .highlight-box { animation: none; border: 1px solid var(--alert); }
+            .bill-card { box-shadow: none; border: 1px solid #eee; }
+            .pay-btn, .qr-input-area { display: none !important; }
         }
     </style>
 </head>
@@ -133,23 +115,26 @@
 
 <div class="bill-card">
     <div class="header">
-        <div class="photo-container">
-            <img src="img_vishal.jpg" alt="Vishal Kumar Singh">
+        <div class="header-profile">
+            <div class="photo-container">
+                <img src="img_vishal.jpg" alt="Vishal Kumar Singh">
+            </div>
+            <div>
+                <h1 style="margin:0; font-size: 24px;">LIC Premium Summary</h1>
+                <p style="margin:5px 0;">Manager: <b>Vishal Kumar Singh</b></p>
+                <span style="font-size: 12px;">ID: 9934291260 | Patna, Bihar</span>
+            </div>
         </div>
-        <div class="header-text">
-            <h1 style="margin:0;">Wealth & Protection Dashboard</h1>
-            <p style="margin:5px 0;">Vishal Kumar Singh | Portfolio Manager</p>
-            <div style="font-size: 10px; opacity: 0.8;">Auth ID: 9934291260 | Patna, Bihar</div>
+        <div class="bill-meta">
+            <p>Report Date: 02/01/2026</p>
+            <p>Cycle: January 2026</p>
+            <p style="color: var(--accent); font-weight: bold;">Status: ACTION REQUIRED</p>
         </div>
     </div>
 
-    <div class="payment-status">
-        <div>
-            <strong>Payment Received (31/12/2025):</strong> <span style="color: var(--growth); font-size: 16px;">₹30,000.00</span>
-        </div>
-        <div class="highlight-box">
-            REST DUE ON: 04/01/2026
-        </div>
+    <div class="payment-status-bar">
+        <span>ACCOUNT SUMMARY</span>
+        <span id="top-due-date" style="color: var(--alert);">DUE ON: 04/01/2026</span>
     </div>
 
     <div class="content">
@@ -159,86 +144,102 @@
                     <th>Policy Holder</th>
                     <th>Policy Number</th>
                     <th>Mode</th>
-                    <th>Premium</th>
+                    <th>Premium Amount</th>
                     <th>Next Due</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr><td>Ravishek Kumar</td><td>887967184</td><td>Annual</td><td>₹19,306.90</td><td>23/09/2026</td></tr>
-                <tr><td>Mukesh Kumar</td><td>886424420</td><td>Annual</td><td>₹15,663.00</td><td>28/06/2026</td></tr>
-                <tr><td>Puja Kumari</td><td>885488385</td><td>Yearly</td><td>₹13,849.30</td><td>11/10/2026</td></tr>
-                <tr><td>Kumari Priya Bharti</td><td>869215524</td><td>Yearly</td><td>₹10,643.00</td><td>07/12/2026</td></tr>
-                <tr><td>Avinash Kumar</td><td>885489786</td><td>Yearly</td><td>₹9,422.90</td><td>27/10/2026</td></tr>
-                <tr><td>Kishan Rai</td><td>887145794</td><td>Half Yearly</td><td>₹7,073.60</td><td>22/05/2026</td></tr>
-                <tr><td>Sunita Singh</td><td>868383069</td><td>Annual</td><td>₹6,554.10</td><td>28/09/2026</td></tr>
-                <tr><td>Renu Devi</td><td>886474987</td><td>Half Yearly</td><td>₹5,853.80</td><td>19/03/2026</td></tr>
-                <tr><td>Anita Kumari</td><td>869603296</td><td>Annual</td><td>₹5,588.90</td><td>15/05/2026</td></tr>
-                <tr><td>Sachin Kumar</td><td>887144721</td><td>Annual</td><td>₹5,563.70</td><td>10/05/2026</td></tr>
-                <tr><td>Sanshkar Bharti</td><td>885492139</td><td>Annual</td><td>₹5,432.70</td><td>17/11/2026</td></tr>
-                <tr><td>Rajendra Ray</td><td>829644126</td><td>Quarterly</td><td>₹4,680.00</td><td>28/03/2026</td></tr>
-                <tr><td>Ujwal Kumar</td><td>869231352</td><td>Quarterly</td><td>₹4,604.00</td><td>13/03/2026</td></tr>
-                <tr><td>Adarsh Ray</td><td>868380931</td><td>Half Yearly</td><td>₹3,562.40</td><td>14/03/2026</td></tr>
-                <tr><td>Bunna Singh</td><td>887967906</td><td>Half Yearly</td><td>₹3,481.80</td><td>27/03/2026</td></tr>
-                <tr><td>Sarita Kumari</td><td>885489785</td><td>Half Yearly</td><td>₹3,015.00</td><td>27/04/2026</td></tr>
-                <tr><td>Vavita Devi</td><td>880783192</td><td>Half Yearly</td><td>₹2,949.40</td><td>22/03/2026</td></tr>
-                <tr><td>Anju Kumari</td><td>829640731</td><td>Half-Yearly</td><td>₹1,453.70</td><td>24/03/2026</td></tr>
-                
-                <tr class="total-row">
-                    <td colspan="3" style="text-align: right;">Gross Portfolio Total:</td>
-                    <td colspan="2">₹1,28,703.20</td>
-                </tr>
-                <tr style="color: var(--growth); font-weight: bold;">
-                    <td colspan="3" style="text-align: right;">Paid Today (31/12/2025):</td>
-                    <td colspan="2">- ₹30,000.00</td>
-                </tr>
-                <tr class="balance-row">
-                    <td colspan="3" style="text-align: right;">REMAINING BALANCE:</td>
-                    <td colspan="2">₹98,703.20</td>
-                </tr>
-            </tbody>
+            <tbody id="bill-table">
+                </tbody>
         </table>
+
+        <div class="calculation-area">
+            <div class="calc-row">
+                <span>Gross Portfolio Total:</span>
+                <span id="gross-total">₹0.00</span>
+            </div>
+            <div class="calc-row" style="color: var(--growth);">
+                <span>Less: Already Paid Today:</span>
+                <span>- ₹30,000.00</span>
+            </div>
+            <div class="calc-row final">
+                <span>NET PAYABLE:</span>
+                <span id="net-payable">₹0.00</span>
+            </div>
+        </div>
     </div>
 
-    <div class="motivation-grid">
-        <div class="m-card" style="background: #fdf2f2; border-left: 4px solid #d32f2f;">
-            <h4>🧠 Money Discipline</h4>
-            Your mind is like a muscle. Paying today's ₹30,000 shows you have the <strong>discipline of the 1%</strong>. Freedom is won by small actions.
-        </div>
-        <div class="m-card" style="background: #f0fdf4; border-left: 4px solid #16a34a;">
-            <h4>🌱 Seed of Growth</h4>
-            Every ₹100 saved is a seed for a tree that shades your children. You are planting a forest of security.
-        </div>
-        <div class="m-card" style="background: #eff6ff; border-left: 4px solid #2563eb;">
-            <h4>🎓 Child Education</h4>
-            These payments ensure that when your children are ready for university, their **financial wings** are built.
-        </div>
-    </div>
-
-    <div class="footer-grid">
-        <div style="font-size: 11px; line-height: 1.5;">
-            <strong style="color: var(--primary);">📊 Remaining Strategy:</strong>
-            <p style="margin:5px 0;">Balance <strong>₹98,703.20</strong> due <strong>Jan 4, 2026</strong>. This maintains your 100% bonus eligibility.</p>
+    <div class="footer-action">
+        <div class="qr-input-area">
+            <h4 style="margin:0 0 10px 0; color: var(--primary);">Payment Instructions:</h4>
+            <p style="font-size: 12px; color: #666; margin: 0;">Click the green button or scan QR to clear the balance. This ensures 100% bonus eligibility for the current financial year.</p>
         </div>
 
-        <div class="qr-box" style="text-align: center; border: 1px solid #ddd; padding: 10px; border-radius: 8px;">
-            <div style="font-size: 9px; font-weight: bold; margin-bottom: 5px;">SCAN TO PAY BALANCE</div>
-            <img src="qr.jpeg" alt="QR" style="width: 80px; height: 80px; object-fit: contain;">
-            
-            <a href="upi://pay?pa=9934291260@ptaxis&pn=Vishal%20Kumar%20Singh&am=98703.20&cu=INR&tn=LIC%20Premium%20Payment" class="pay-btn">
-                PAY BALANCE NOW
-            </a>
+        <div style="text-align: center;">
+            <img src="qr.jpeg" alt="QR" style="width: 100px; height: 100px; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px; border-radius: 5px;">
+            <a href="#" id="dynamic-pay-btn" class="pay-btn">PAY BALANCE NOW</a>
         </div>
     </div>
 
     <div style="text-align: right; padding: 0 40px 20px;">
-        <div style="display: inline-block; text-align: center;">
-            <div style="border-top: 1px solid #333; width: 180px; padding-top: 5px;">
-                <strong style="text-transform: uppercase; font-size: 11px;">Vishal Kumar Singh</strong>
-                <div style="font-size: 9px; color: #666;">Auth Advisor Signature</div>
-            </div>
+        <div style="display: inline-block; text-align: center; border-top: 1px solid #333; width: 200px; padding-top: 10px;">
+            <strong style="font-size: 12px;">VISHAL KUMAR SINGH</strong><br>
+            <span style="font-size: 10px; color: #777;">Authorized Advisor</span>
         </div>
     </div>
 </div>
+
+<script>
+    // Data Array (Normally comes from bills.json)
+    const policies = [
+        { name: "Ravishek Kumar", id: "887967184", mode: "Annual", amt: 19306.90, due: "23/09/2026" },
+        { name: "Mukesh Kumar", id: "886424420", mode: "Annual", amt: 15663.00, due: "28/06/2026" },
+        { name: "Puja Kumari", id: "885488385", mode: "Yearly", amt: 13849.30, due: "11/10/2026" },
+        { name: "Kumari Priya Bharti", id: "869215524", mode: "Yearly", amt: 10643.00, due: "07/12/2026" },
+        { name: "Avinash Kumar", id: "885489786", mode: "Yearly", amt: 9422.90, due: "27/10/2026" },
+        { name: "Kishan Rai", id: "887145794", mode: "Half Yearly", amt: 7073.60, due: "22/05/2026" },
+        { name: "Sunita Singh", id: "868383069", mode: "Annual", amt: 6554.10, due: "28/09/2026" },
+        { name: "Renu Devi", id: "886474987", mode: "Half Yearly", amt: 5853.80, due: "19/03/2026" },
+        { name: "Anita Kumari", id: "869603296", mode: "Annual", amt: 5588.90, due: "15/05/2026" },
+        { name: "Sachin Kumar", id: "887144721", mode: "Annual", amt: 5563.70, due: "10/05/2026" },
+        { name: "Sanshkar Bharti", id: "885492139", mode: "Annual", amt: 5432.70, due: "17/11/2026" },
+        { name: "Rajendra Ray", id: "829644126", mode: "Quarterly", amt: 4680.00, due: "28/03/2026" },
+        { name: "Ujwal Kumar", id: "869231352", mode: "Quarterly", amt: 4604.00, due: "13/03/2026" },
+        { name: "Adarsh Ray", id: "868380931", mode: "Half Yearly", amt: 3562.40, due: "14/03/2026" },
+        { name: "Bunna Singh", id: "887967906", mode: "Half Yearly", amt: 3481.80, due: "27/03/2026" },
+        { name: "Sarita Kumari", id: "885489785", mode: "Half Yearly", amt: 3015.00, due: "27/04/2026" },
+        { name: "Vavita Devi", id: "880783192", mode: "Half Yearly", amt: 2949.40, due: "22/03/2026" },
+        { name: "Anju Kumari", id: "829640731", mode: "Half-Yearly", amt: 1453.70, due: "24/03/2026" }
+    ];
+
+    let grossTotal = 0;
+    const tableBody = document.getElementById('bill-table');
+
+    // Load Table
+    policies.forEach(p => {
+        grossTotal += p.amt;
+        tableBody.innerHTML += `
+            <tr>
+                <td><b>${p.name}</b></td>
+                <td>${p.id}</td>
+                <td>${p.mode}</td>
+                <td style="color:var(--secondary); font-weight:500;">₹${p.amt.toLocaleString('en-IN')}</td>
+                <td>${p.due}</td>
+            </tr>
+        `;
+    });
+
+    // Update Calculations
+    const paidAmount = 30000;
+    const netPayable = grossTotal - paidAmount;
+
+    document.getElementById('gross-total').innerText = "₹" + grossTotal.toLocaleString('en-IN', {minimumFractionDigits: 2});
+    document.getElementById('net-payable').innerText = "₹" + netPayable.toLocaleString('en-IN', {minimumFractionDigits: 2});
+
+    // Update UPI Button Link
+    const upiLink = `upi://pay?pa=9934291260@ptaxis&pn=Vishal%20Kumar%20Singh&am=${netPayable.toFixed(2)}&cu=INR&tn=LIC%20Premium%20Payment`;
+    document.getElementById('dynamic-pay-btn').setAttribute('href', upiLink);
+
+</script>
 
 </body>
 </html>
