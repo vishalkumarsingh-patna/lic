@@ -2,122 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LIC_Professional_Bill_Vishal_Singh</title>
+    <title>LIC_Dark_Dashboard_Vishal_Singh</title>
     <style>
         :root {
-            --primary: #003366;
-            --secondary: #00509d;
-            --accent: #ffcc00;
-            --growth: #28a745;
-            --alert: #d32f2f;
-            --light: #f8fafc;
+            --bg-dark: #0f172a;
+            --card-dark: #1e293b;
+            --primary: #38bdf8; /* Light Blue */
+            --accent: #fbbf24; /* Amber */
+            --growth: #22c55e; /* Green */
+            --alert: #ef4444; /* Red */
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
         
         @page { size: A4; margin: 10mm; }
 
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
-            background-color: #eef2f7; 
+            background-color: var(--bg-dark); 
             margin: 0; 
             padding: 20px;
-            color: #333;
+            color: var(--text-main);
         }
         
         .bill-card {
             max-width: 210mm;
             margin: auto;
-            background: white;
-            border-radius: 12px;
+            background: var(--card-dark);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #1e293b, #0f172a);
             color: white;
-            padding: 30px 40px;
+            padding: 25px 40px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 25px;
+            border-bottom: 1px solid #334155;
         }
 
-        .header-profile { display: flex; align-items: center; gap: 20px; }
         .photo-container {
-            width: 80px; height: 100px; border: 2px solid white; border-radius: 4px;
-            background: #fff; overflow: hidden;
+            width: 100px; height: 125px; border: 2px solid var(--primary); border-radius: 8px;
+            overflow: hidden; flex-shrink: 0; background: #fff;
         }
         .photo-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .bill-meta { text-align: right; font-size: 13px; opacity: 0.9; }
-
-        .payment-status-bar {
-            background: #fff9c4;
+        .payment-status {
+            background: #1e293b;
             padding: 15px 40px;
             border-bottom: 2px solid var(--accent);
             display: flex;
             justify-content: space-between;
-            font-weight: bold;
+            align-items: center;
         }
 
-        .content { padding: 30px 40px; }
-        
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th { background: var(--light); color: var(--primary); padding: 10px; text-align: left; font-size: 11px; text-transform: uppercase; border-bottom: 2px solid #ddd; }
-        td { padding: 10px; border-bottom: 1px solid #eee; font-size: 12px; }
+        .main-layout { padding: 25px; }
 
-        /* Receipt Button Style */
-        .receipt-btn {
-            background: #e2e8f0;
-            color: var(--primary);
-            padding: 5px 10px;
-            border-radius: 4px;
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background: #334155; color: var(--primary); padding: 12px; text-align: left; font-size: 11px; text-transform: uppercase; }
+        td { padding: 10px; border-bottom: 1px solid #334155; font-size: 11px; color: var(--text-main); }
+        
+        /* Green Print Button */
+        .print-btn {
+            background: var(--growth);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
             text-decoration: none;
             font-size: 10px;
             font-weight: bold;
-            border: 1px solid #cbd5e1;
-            transition: 0.2s;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
-        .receipt-btn:hover { background: var(--secondary); color: white; }
+        .print-btn:hover { background: #16a34a; transform: scale(1.05); }
 
-        .calculation-area {
-            background: var(--light);
+        /* Download All Button */
+        .download-all-btn {
+            background: var(--primary);
+            color: #0f172a;
+            padding: 10px 20px;
             border-radius: 8px;
-            padding: 20px;
-            margin-left: auto;
-            width: 350px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: inline-block;
         }
-
-        .calc-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
-        .calc-row.final { font-size: 18px; color: var(--alert); border-top: 2px double #ccc; margin-top: 5px; padding-top: 10px; font-weight: bold; }
 
         .footer-action {
-            display: grid;
-            grid-template-columns: 1fr 200px;
-            gap: 40px;
+            display: flex;
+            justify-content: space-between;
             padding: 30px 40px;
-            background: #fafafa;
-            border-top: 1px solid #eee;
+            background: #0f172a;
+            border-top: 1px solid #334155;
             align-items: center;
         }
 
         .pay-btn {
-            display: block;
-            background: linear-gradient(135deg, #28a745, #1e7e34);
+            background: var(--growth);
             color: white;
-            padding: 15px;
+            padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 15px;
             font-weight: bold;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
         }
 
         @media print {
-            body { background: white; padding: 0; }
+            body { background: white; color: black; padding: 0; }
             .bill-card { box-shadow: none; border: 1px solid #eee; }
-            .pay-btn, .receipt-btn, .qr-input-area { display: none !important; }
+            .print-btn, .download-all-btn, .pay-btn { display: none !important; }
         }
     </style>
 </head>
@@ -125,133 +124,92 @@
 
 <div class="bill-card">
     <div class="header">
-        <div class="header-profile">
-            <div class="photo-container">
-                <img src="img_vishal.jpg" alt="Vishal Kumar Singh">
-            </div>
-            <div>
-                <h1 style="margin:0; font-size: 24px;">LIC Premium Summary</h1>
-                <p style="margin:5px 0;">Manager: <b>Vishal Kumar Singh</b></p>
-                <span style="font-size: 12px;">ID: 9934291260 | Patna, Bihar</span>
-            </div>
-        </div>
-        <div class="bill-meta">
-            <p>Report Date: 02/01/2026</p>
-            <p>Cycle: January 2026</p>
-            <p style="color: var(--accent); font-weight: bold;">Status: ACTION REQUIRED</p>
+        <div class="photo-container"><img src="img_vishal.jpg" alt="VISHAL"></div>
+        <div>
+            <h1 style="margin:0; color: var(--primary);">Wealth & Protection Dashboard</h1>
+            <p style="margin:5px 0; color: var(--text-dim);">Manager: Vishal Kumar Singh</p>
+            <div style="font-size: 10px; color: var(--text-dim);">ID: 9934291260 | Patna, Bihar</div>
         </div>
     </div>
 
-    <div class="payment-status-bar">
-        <span>ACCOUNT SUMMARY</span>
-        <span id="top-due-date" style="color: var(--alert);">DUE ON: 04/01/2026</span>
+    <div class="payment-status">
+        <div><strong style="color: var(--text-dim);">Paid Today:</strong> <span style="color: var(--growth); font-size: 18px;">₹30,000.00</span></div>
+        <div style="background: var(--alert); padding: 5px 15px; border-radius: 5px; font-weight: bold;">DUE: 04/01/2026</div>
     </div>
 
-    <div class="content">
+    <div class="main-layout">
+        <div style="text-align: right;">
+            <a href="#" class="download-all-btn" onclick="alert('Starting Bulk Download...')">📥 DOWNLOAD ALL RECEIPTS</a>
+        </div>
+
         <table>
             <thead>
                 <tr>
+                    <th>S.No</th>
                     <th>Policy Holder</th>
                     <th>Policy Number</th>
-                    <th>Mode</th>
                     <th>Premium</th>
-                    <th>Next Due</th>
-                    <th>Receipt</th>
+                    <th>Due Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="bill-table">
                 </tbody>
         </table>
-
-        <div class="calculation-area">
-            <div class="calc-row">
-                <span>Gross Portfolio Total:</span>
-                <span id="gross-total">₹0.00</span>
-            </div>
-            <div class="calc-row" style="color: var(--growth);">
-                <span>Less: Already Paid Today:</span>
-                <span>- ₹30,000.00</span>
-            </div>
-            <div class="calc-row final">
-                <span>NET PAYABLE:</span>
-                <span id="net-payable">₹0.00</span>
-            </div>
-        </div>
     </div>
 
     <div class="footer-action">
-        <div class="qr-input-area">
-            <h4 style="margin:0 0 10px 0; color: var(--primary);">Payment Instructions:</h4>
-            <p style="font-size: 12px; color: #666; margin: 0;">Click "PAY BALANCE NOW" or scan QR. You can also download individual receipts from the table above.</p>
+        <div>
+            <div style="color: var(--text-dim); font-size: 12px;">NET PAYABLE BALANCE</div>
+            <div id="net-payable" style="color: var(--alert); font-size: 24px; font-weight: bold;">₹0.00</div>
         </div>
-
-        <div style="text-align: center;">
-            <img src="qr.jpeg" alt="QR" style="width: 100px; height: 100px; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px; border-radius: 5px;">
-            <a href="#" id="dynamic-pay-btn" class="pay-btn">PAY BALANCE NOW</a>
-        </div>
-    </div>
-
-    <div style="text-align: right; padding: 0 40px 20px;">
-        <div style="display: inline-block; text-align: center; border-top: 1px solid #333; width: 200px; padding-top: 10px;">
-            <strong style="font-size: 12px;">VISHAL KUMAR SINGH</strong><br>
-            <span style="font-size: 10px; color: #777;">Authorized Advisor</span>
-        </div>
+        <a href="#" id="dynamic-pay-btn" class="pay-btn">PAY BALANCE NOW</a>
     </div>
 </div>
 
 <script>
-    // ---------------------------------------------------------
-    // STEP 1: HOW TO ADD A NEW USER?
-    // Simply add a new object inside this [ ] array. 
-    // Format: { name: "Name", id: "PolicyNo", mode: "Mode", amt: 100.50, due: "Date" }
-    // ---------------------------------------------------------
     const policies = [
-        { name: "Ravishek Kumar", id: "887967184", mode: "Annual", amt: 19306.90, due: "23/09/2026" },
-        { name: "Mukesh Kumar", id: "886424420", mode: "Annual", amt: 15663.00, due: "28/06/2026" },
-        { name: "Puja Kumari", id: "885488385", mode: "Yearly", amt: 13849.30, due: "11/10/2026" },
-        { name: "Kumari Priya Bharti", id: "869215524", mode: "Yearly", amt: 10643.00, due: "07/12/2026" },
-        { name: "Avinash Kumar", id: "885489786", mode: "Yearly", amt: 9422.90, due: "27/10/2026" },
-        { name: "Kishan Rai", id: "887145794", mode: "Half Yearly", amt: 7073.60, due: "22/05/2026" },
-        { name: "Vishal Kumar Singh", id: "829864486", mode: "Quarterly", amt: 6698.00, due: "14/02/2026" }, // Added correctly
-        { name: "Sunita Singh", id: "868383069", mode: "Annual", amt: 6554.10, due: "28/09/2026" },
-        { name: "Renu Devi", id: "886474987", mode: "Half Yearly", amt: 5853.80, due: "19/03/2026" },
-        // --- ADD NEW USER BELOW THIS LINE ---
-        { name: "Naya User", id: "123456789", mode: "Annual", amt: 5000.00, due: "01/01/2027" } 
+        { name: "Ravishek Kumar", id: "887967184", amt: 19306.90, due: "23/09/2026" },
+        { name: "Mukesh Kumar", id: "886424420", amt: 15663.00, due: "28/06/2026" },
+        { name: "Puja Kumari", id: "885488385", amt: 13849.30, due: "11/10/2026" },
+        { name: "Kumari Priya Bharti", id: "869215524", amt: 10643.00, due: "07/12/2026" },
+        { name: "Avinash Kumar", id: "885489786", amt: 9422.90, due: "27/10/2026" },
+        { name: "Kishan Rai", id: "887145794", amt: 7073.60, due: "22/05/2026" },
+        { name: "Vishal Kumar Singh", id: "829864486", amt: 6698.00, due: "14/02/2026" },
+        { name: "Sunita Singh", id: "868383069", amt: 6554.10, due: "28/09/2026" },
+        { name: "Renu Devi", id: "886474987", amt: 5853.80, due: "19/03/2026" },
+        { name: "Anita Kumari", id: "869603296", amt: 5588.90, due: "15/05/2026" },
+        { name: "Sachin Kumar", id: "887144721", amt: 5563.70, due: "10/05/2026" },
+        { name: "Sanshkar Bharti", id: "885492139", amt: 5432.70, due: "17/11/2026" },
+        { name: "Rajendra Ray", id: "829644126", amt: 4680.00, due: "28/03/2026" },
+        { name: "Ujwal Kumar", id: "869231352", amt: 4604.00, due: "13/03/2026" },
+        { name: "Adarsh Ray", id: "868380931", amt: 3562.40, due: "14/03/2026" },
+        { name: "Bunna Singh", id: "887967906", amt: 3481.80, due: "27/03/2026" },
+        { name: "Sarita Kumari", id: "885489785", amt: 3015.00, due: "27/04/2026" },
+        { name: "Vavita Devi", id: "880783192", amt: 2949.40, due: "22/03/2026" },
+        { name: "Anju Kumari", id: "829640731", amt: 1453.70, due: "24/03/2026" }
     ];
 
-    let grossTotal = 0;
     const tableBody = document.getElementById('bill-table');
+    let total = 0;
 
-    // Load Table with Download Receipt Logic
-    policies.forEach(p => {
-        grossTotal += p.amt;
-        
-        // STEP 2: Path of your receipts on GitHub
-        // Make sure you have a folder named 'receipts' and files named '887967184.pdf' etc.
-        const receiptPath = `receipts/${p.id}.pdf`;
-
+    policies.forEach((p, index) => {
+        total += p.amt;
         tableBody.innerHTML += `
             <tr>
+                <td style="color: var(--text-dim);">${index + 1}</td>
                 <td><b>${p.name}</b></td>
                 <td>${p.id}</td>
-                <td>${p.mode}</td>
-                <td style="color:var(--secondary); font-weight:500;">₹${p.amt.toLocaleString('en-IN')}</td>
+                <td style="color:var(--primary);">₹${p.amt.toLocaleString('en-IN')}</td>
                 <td>${p.due}</td>
-                <td><a href="${receiptPath}" class="receipt-btn" download>PDF ⬇</a></td>
+                <td><a href="receipts/${p.id}.pdf" class="print-btn" download>Print Receipt</a></td>
             </tr>
         `;
     });
 
-    // Update Calculations
-    const paidAmount = 30000;
-    const netPayable = grossTotal - paidAmount;
-
-    document.getElementById('gross-total').innerText = "₹" + grossTotal.toLocaleString('en-IN', {minimumFractionDigits: 2});
-    document.getElementById('net-payable').innerText = "₹" + netPayable.toLocaleString('en-IN', {minimumFractionDigits: 2});
-
-    // Update UPI Button Link
-    const upiLink = `upi://pay?pa=9934291260@ptaxis&pn=Vishal%20Kumar%20Singh&am=${netPayable.toFixed(2)}&cu=INR&tn=LIC%20Premium%20Payment`;
-    document.getElementById('dynamic-pay-btn').setAttribute('href', upiLink);
+    const net = total - 30000;
+    document.getElementById('net-payable').innerText = "₹" + net.toLocaleString('en-IN');
+    document.getElementById('dynamic-pay-btn').href = `upi://pay?pa=9934291260@ptaxis&pn=Vishal%20Singh&am=${net.toFixed(2)}`;
 
 </script>
 </body>
